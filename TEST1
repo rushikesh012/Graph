@@ -68,4 +68,45 @@ public class solution {
 
 	
 }
+//------------------------------------
+
+public class Solution {
+	public static void showJumpingNos(int x) {
+		PrintJumping(x);
+	}
+
+	public static void PrintJumping(int X){
+		
+		System.out.print("0 ");
+    	for (int i = 1; i <= 9; i++) {
+        	dfs(i, X);
+    	}
+	}
+
+	public static void dfs(int cnum, int num){
+
+		if (cnum > num) // base case
+			return;
+	
+		System.out.print(cnum + " ");
+	
+		int l_dig = cnum % 10; // get the last digit of current number
+	
+		// for the next digit we have two options
+		int first = cnum * 10 + l_dig + 1;
+		int second = cnum * 10 + l_dig - 1;
+	
+		if (l_dig == 0) // here as second option will give us a
+						// -ve number we will skip it
+			dfs(first, num);
+		else if (l_dig == 9) // here as first option will give
+							// us a -ve number we will skip it
+			dfs(second, num);
+		else // else we call on both the options
+		{
+			dfs(first, num);
+			dfs(second, num);
+		}
+	}
+}
 
